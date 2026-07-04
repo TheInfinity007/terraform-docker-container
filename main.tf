@@ -9,6 +9,8 @@ terraform {
 
 provider "docker" {}
 
+# resource <resource_type> <resource_name> {}
+# resource_type = provider + _ + type i.e provider = docker
 resource "docker_image" "nginx" {
   name = "nginx:latest"
   keep_locally = false

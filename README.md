@@ -48,12 +48,20 @@ You can verify the container is running by:
 - Visiting `http://localhost:8000` in your browser.
 - Running `docker ps` in your terminal.
 
-## 🗑️ Cleanup
+## 🗑️ Destroying Infrastructure
 
-To remove the infrastructure and stop the container:
+When you are finished with the project or need to reset your environment, use the `terraform destroy` command.
+
+### What does `terraform destroy` do?
+It looks at the `terraform.tfstate` file to identify all resources that were created by your configuration and removes them in the correct order. In this project, it will:
+1. Stop and remove the `tutorial` Docker container.
+2. (Optional) Remove the cached Docker image if configured.
+
+### How to run it:
 ```bash
 terraform destroy
 ```
+*(Type `yes` when prompted to confirm the destruction of your resources)*
 
 ## 📚 Terraform Command Reference
 

@@ -57,6 +57,15 @@ You can override the default container name during deployment using the `-var` f
 terraform apply -var="container_name=my-custom-nginx"
 ```
 
+## 📤 Outputs
+
+After running `terraform apply`, Terraform will display the following output values:
+
+| Output | Description |
+| --- | --- |
+| `container_id` | The unique ID of the created Docker container |
+| `image_id` | The unique ID of the Docker image used for the container |
+
 ## 🔍 Verification
 
 You can verify the container is running by:

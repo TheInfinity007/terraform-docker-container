@@ -6,10 +6,10 @@ This project demonstrates how to use Terraform to manage Docker containers as in
 
 The current configuration deploys the following:
 - **Image**: `nginx:latest`
-- **Container Name**: `tutorial`
-- **Port Mapping**: Internal `80` $\rightarrow$ External `8000`
+- **Container Name**: Defined by `container_name` variable (Default: `ExampleNginxContainer`)
+- **Port Mapping**: Internal `80` $\rightarrow$ External `8080`
 
-Once deployed, the Nginx welcome page will be accessible at `http://localhost:8000`.
+Once deployed, the Nginx welcome page will be accessible at `http://localhost:8080`.
 
 ## 🛠️ Prerequisites
 
@@ -42,10 +42,25 @@ Follow these steps to deploy the infrastructure:
    ```
    *(Type `yes` when prompted to confirm)*
 
+## ⚙️ Input Variables
+
+This project uses Terraform variables to allow customization without modifying the core code.
+
+| Variable | Description | Type | Default |
+| --- | --- | --- | --- |
+| `container_name` | The name assigned to the Docker container | `string` | `ExampleNginxContainer` |
+
+### Overriding Variables
+You can override the default container name during deployment using the `-var` flag:
+
+```bash
+terraform apply -var="container_name=my-custom-nginx"
+```
+
 ## 🔍 Verification
 
 You can verify the container is running by:
-- Visiting `http://localhost:8000` in your browser.
+- Visiting `http://localhost:8080` in your browser.
 - Running `docker ps` in your terminal.
 
 ## 🗑️ Destroying Infrastructure
@@ -53,15 +68,13 @@ You can verify the container is running by:
 When you are finished with the project or need to reset your environment, use the `terraform destroy` command.
 
 ### What does `terraform destroy` do?
-It looks at the `terraform.tfstate` file to identify all resources that were created by your configuration and removes them in the correct order. In this project, it will:
-1. Stop and remove the `tutorial` Docker container.
-2. (Optional) Remove the cached Docker image if configured.
+It looks at the `terraform.tfstate` file to identify all resources that were created by your configuration and removes them in the correct order. In this project, it will stop and remove the Docker container.
 
 ### How to run it:
 ```bash
 terraform destroy
 ```
-*(Type `yes` when prompted to confirm the destruction of your resources)*
+*(Type `yes` when prompted to confirm)*
 
 ## 📚 Terraform Command Reference
 

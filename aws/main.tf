@@ -72,7 +72,7 @@ module "elb_http" {
   version = "4.0.1"
 
   // Ensure load balancer name is unique
-  name = "lb-${random_string.lb_id.result}-project-alpha-dev"
+  name = "lb-${random_string.lb_id.result}-${var.resource_tags["project"]}-${var.resource_tags["environment"]}"
 
   internal = false
 
